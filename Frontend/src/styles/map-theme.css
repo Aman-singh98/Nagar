@@ -1,0 +1,66 @@
+/**
+ * map-theme.css
+ * Supplemental styles for the Live Map Leaflet container.
+ * All colours reference CSS custom properties so they switch automatically
+ * when ThemeContext sets [data-theme="light"] on <html>.
+ */
+
+/* ── Leaflet base overrides ───────────────────────────────────────────────── */
+.leaflet-container {
+  background: var(--bg-2) !important;
+  font-family: var(--font-body) !important;
+  transition: background 0.25s ease;
+}
+
+/* Custom tooltip */
+.map-tooltip {
+  background:    var(--surface)    !important;
+  border:        1px solid var(--border-2) !important;
+  color:         var(--text)       !important;
+  font-family:   var(--font-body)  !important;
+  font-size:     12px              !important;
+  border-radius: 8px               !important;
+  padding:       5px 10px         !important;
+  box-shadow:    var(--shadow)     !important;
+  white-space:   nowrap;
+}
+.map-tooltip::before { display: none !important; }
+
+/* Zoom controls */
+.leaflet-control-zoom a {
+  background:   var(--surface) !important;
+  color:        var(--text)    !important;
+  border-color: var(--border)  !important;
+  transition:   background 0.15s, color 0.15s;
+}
+.leaflet-control-zoom a:hover {
+  background: var(--bg-3)   !important;
+  color:      var(--accent) !important;
+}
+
+/* Attribution */
+.leaflet-control-attribution {
+  background: var(--surface) !important;
+  color:      var(--text-3)  !important;
+  font-size:  10px           !important;
+  border-radius: 4px         !important;
+}
+.leaflet-control-attribution a { color: var(--accent-2) !important; }
+
+/* ── Employee pin pulse animation ────────────────────────────────────────── */
+@keyframes pin-pulse {
+  0%   { transform: scale(0.7); opacity: 0.7; }
+  70%  { transform: scale(1.5); opacity: 0;   }
+  100% { transform: scale(1.5); opacity: 0;   }
+}
+
+/* ── Detail panel entrance ────────────────────────────────────────────────── */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ── Spinning refresh icon ────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

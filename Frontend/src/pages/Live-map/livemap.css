@@ -1,0 +1,339 @@
+/**
+ * livemap.css
+ * Scoped styles for LiveMapPage and its sub-components.
+ * Mobile-first. All colours use CSS custom properties so dark/light
+ * theme switching (via [data-theme] on <html>) works automatically.
+ */
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+
+@keyframes fadeInRow {
+   from { opacity: 0; transform: translateX(-8px); }
+   to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-live {
+   0%, 100% { opacity: 1; }
+   50%       { opacity: 0.4; }
+}
+
+@keyframes spin {
+   from { transform: rotate(0deg); }
+   to   { transform: rotate(360deg); }
+}
+
+/* ── Root layout ─────────────────────────────────────────────────────────── */
+
+.livemap-root {
+   display: flex;
+   height: 100dvh;
+   overflow: hidden;
+   position: relative;
+   background: var(--bg-2);
+   transition: background 0.25s ease;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+
+.livemap-sidebar {
+   width: 260px;
+   flex-shrink: 0;
+   background: var(--surface);
+   border-right: 1px solid var(--border);
+   display: flex;
+   flex-direction: column;
+   z-index: 10;
+   transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+               background 0.25s ease,
+               border-color 0.25s ease;
+   overflow: hidden;
+}
+
+.livemap-sidebar--collapsed {
+   width: 56px;
+}
+
+/* ── Sidebar collapse button ─────────────────────────────────────────────── */
+
+.sidebar-collapse-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   padding: 8px 0;
+   background: transparent;
+   border: none;
+   border-bottom: 1px solid var(--border);
+   color: var(--text-3);
+   cursor: pointer;
+   transition: background 0.15s, color 0.15s;
+   flex-shrink: 0;
+}
+
+.sidebar-collapse-btn:hover {
+   background: var(--bg-3);
+   color: var(--accent);
+}
+
+/* ── Sidebar header ──────────────────────────────────────────────────────── */
+
+.sidebar-header {
+   padding: 14px 14px 10px;
+   border-bottom: 1px solid var(--border);
+   flex-shrink: 0;
+}
+
+.sidebar-header__top {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 10px;
+}
+
+.sidebar-header__title {
+   display: flex;
+   align-items: center;
+   gap: 7px;
+}
+
+.refresh-btn {
+   color: var(--text-3) !important;
+   transition: color 0.15s !important;
+}
+
+.refresh-btn:hover {
+   color: var(--accent) !important;
+}
+
+/* ── Theme toggle button ─────────────────────────────────────────────────── */
+
+.theme-toggle-btn {
+   color: var(--text-3) !important;
+   transition: color 0.15s !important;
+}
+
+.theme-toggle-btn:hover {
+   color: var(--accent) !important;
+}
+
+/* ── Poll countdown track ────────────────────────────────────────────────── */
+
+.poll-track {
+   height: 2px;
+   background: var(--border);
+   border-radius: 99px;
+   overflow: hidden;
+   margin-top: 4px;
+}
+
+.poll-fill {
+   height: 100%;
+   background: var(--accent);
+   border-radius: 99px;
+   transition: width 0.5s linear;
+}
+
+/* ── Sidebar search + toggle ─────────────────────────────────────────────── */
+
+.sidebar-search {
+   padding: 10px 14px;
+   border-bottom: 1px solid var(--border);
+   flex-shrink: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.sidebar-search__input.ant-input-affix-wrapper {
+   border-radius: 8px;
+   font-size: 12px;
+}
+
+.sidebar-search__toggle {
+   display: flex;
+   align-items: center;
+   gap: 7px;
+}
+
+/* ── Live badge ──────────────────────────────────────────────────────────── */
+
+.live-badge {
+   display: inline-flex;
+   align-items: center;
+   gap: 4px;
+   padding: 2px 8px;
+   border-radius: 99px;
+   background: var(--green-dim);
+   border: 1px solid var(--green);
+   color: var(--green);
+   font-size: 10px;
+   font-weight: 700;
+   letter-spacing: 0.04em;
+}
+
+.live-badge--fetching {
+   animation: pulse-live 1.2s ease-in-out infinite;
+}
+
+/* ── Employee list ───────────────────────────────────────────────────────── */
+
+.sidebar-list {
+   flex: 1;
+   overflow-y: auto;
+   scrollbar-width: thin;
+   scrollbar-color: var(--border-2) transparent;
+}
+
+.sidebar-list::-webkit-scrollbar { width: 4px; }
+.sidebar-list::-webkit-scrollbar-track { background: transparent; }
+.sidebar-list::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+
+.fade-in-row {
+   animation: fadeInRow 0.3s ease both;
+}
+
+/* ── Sidebar row ─────────────────────────────────────────────────────────── */
+
+.sidebar-row {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 10px 14px;
+   background: transparent;
+   border: none;
+   border-left: 3px solid transparent;
+   border-bottom: 1px solid var(--border);
+   cursor: pointer;
+   text-align: left;
+   transition: background 0.13s, border-color 0.13s;
+}
+
+.sidebar-row:hover {
+   background: var(--bg-3);
+}
+
+.sidebar-row--selected {
+   background: var(--accent-glow);
+   border-left-color: var(--accent);
+}
+
+.sidebar-row__avatar-wrap {
+   position: relative;
+   flex-shrink: 0;
+}
+
+.sidebar-row__info {
+   flex: 1;
+   min-width: 0;
+}
+
+/* ── Online dot ──────────────────────────────────────────────────────────── */
+
+.online-dot {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 9px;
+   height: 9px;
+   border-radius: 50%;
+   background: var(--border-2);
+   border: 2px solid var(--surface);
+   flex-shrink: 0;
+}
+
+.online-dot--active {
+   background: var(--green);
+   box-shadow: 0 0 0 2px var(--green-dim);
+}
+
+/* ── Collapsed avatar stack ──────────────────────────────────────────────── */
+
+.sidebar-collapsed-avatars {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+   padding: 14px 0;
+   flex: 1;
+   overflow-y: auto;
+}
+
+/* ── Legend ──────────────────────────────────────────────────────────────── */
+
+.sidebar-legend {
+   padding: 12px 14px;
+   border-top: 1px solid var(--border);
+   flex-shrink: 0;
+}
+
+.legend-item {
+   display: flex;
+   align-items: center;
+   gap: 7px;
+   margin-bottom: 5px;
+}
+
+.legend-dot {
+   width: 9px;
+   height: 9px;
+   border-radius: 50%;
+   flex-shrink: 0;
+}
+
+/* ── Map area ────────────────────────────────────────────────────────────── */
+
+.livemap-map-area {
+   flex: 1;
+   position: relative;
+   overflow: hidden;
+}
+
+/* ── Map overlays ────────────────────────────────────────────────────────── */
+
+.map-overlay {
+   position: absolute;
+   inset: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   z-index: 500;
+}
+
+.map-overlay--loading {
+   background: rgba(0, 0, 0, 0.55);
+   backdrop-filter: blur(4px);
+   gap: 10px;
+}
+
+.map-overlay--empty {
+   pointer-events: none;
+}
+
+.map-empty-card {
+   background: var(--surface);
+   border: 1px solid var(--border);
+   border-radius: 12px;
+   padding: 24px 32px;
+   text-align: center;
+   box-shadow: var(--shadow);
+}
+
+/* ── Responsive: hide sidebar on very small screens ──────────────────────── */
+
+@media (max-width: 480px) {
+   .livemap-sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 100;
+      width: 56px;
+   }
+
+   .livemap-sidebar:not(.livemap-sidebar--collapsed) {
+      width: 240px;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.18);
+   }
+}

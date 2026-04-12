@@ -1,0 +1,32 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "nodemon server.js",
+		"seed": "node seeds/seed.js",
+		"seed:routes": "node seeds/seedRoutes.js",
+		"test": "vitest run"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"bcrypt": "^6.0.0",
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.6",
+		"dotenv": "^17.4.1",
+		"express": "^5.2.1",
+		"helmet": "^8.1.0",
+		"joi": "^18.1.2",
+		"jsonwebtoken": "^9.0.3",
+		"mongoose": "^9.4.1"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.14",
+		"vitest": "^4.1.4"
+	}
+}
