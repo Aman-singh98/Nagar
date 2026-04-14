@@ -31,6 +31,7 @@
    position: relative;
    background: var(--bg-2);
    transition: background 0.25s ease;
+   width: 100%;
 }
 
 /* ── Sidebar ─────────────────────────────────────────────────────────────── */
@@ -336,4 +337,9 @@
       width: 240px;
       box-shadow: 4px 0 16px rgba(0, 0, 0, 0.18);
    }
+}
+
+#live-map-container {
+  width: 100%;
+  height: 100%;   
 }

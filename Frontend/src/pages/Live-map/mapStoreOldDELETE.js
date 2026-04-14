@@ -24,10 +24,10 @@ export const POLL_INTERVAL_MS = 30_000;
 const useMapStore = create(
    subscribeWithSelector((set, get) => ({
       // ── State ────────────────────────────────────────────────────────────────
-      /** @type {Array<import('./types').EmployeeLocation>} */
+      /** @type {Array<import('./types.js').EmployeeLocation>} */
       locations: [],
 
-      /** @type {import('./types').AssignmentDetail | null} */
+      /** @type {import('./types.js').AssignmentDetail | null} */
       selectedAssignment: null,
 
       /** @type {string | null} employeeId currently highlighted on map */
@@ -42,7 +42,7 @@ const useMapStore = create(
       /** @type {number | null} setInterval handle */
       _pollHandle: null,
 
-      /** @type {Record<string, import('./types').AssignmentDetail>} keyed by assignmentId */
+      /** @type {Record<string, import('./types.js').AssignmentDetail>} keyed by assignmentId */
       _assignmentCache: {},
 
       // ── Actions ──────────────────────────────────────────────────────────────
@@ -54,6 +54,7 @@ const useMapStore = create(
       fetchLocations: async () => {
          try {
             const { data } = await api.get('/locations', { params: { latest: true } });
+            console.log(data, "Latest location data");
             set({ locations: data.data ?? [], error: null });
          } catch (err) {
             set({ error: err?.response?.data?.message ?? 'Failed to fetch locations' });

@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import App from './App.jsx';
 import './styles/globals.css';
 import 'antd/dist/reset.css';
+import 'leaflet/dist/leaflet.css';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
