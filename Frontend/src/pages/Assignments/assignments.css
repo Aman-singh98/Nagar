@@ -1,0 +1,207 @@
+/**
+ * assignments.css
+ * Scoped styles for the Assignments page and its sub-components.
+ * Mobile-first. Dark mode handled via .assignments-page--dark class
+ * AND Ant Design's darkAlgorithm (set in ConfigProvider).
+ */
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+   from { opacity: 0; transform: translateY(12px); }
+   to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Utility ─────────────────────────────────────────────────────────────── */
+
+.fade-up { animation: fadeUp 0.35s ease both; }
+
+/* ── Page layout ─────────────────────────────────────────────────────────── */
+
+.assignments-page {
+   padding: 20px 16px;
+   max-width: 1280px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+@media (min-width: 768px) {
+   .assignments-page { padding: 28px 32px; gap: 24px; }
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────── */
+
+.page-header { animation: fadeUp 0.3s ease both; }
+
+/* ── Stats grid ──────────────────────────────────────────────────────────── */
+
+.stats-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 12px;
+}
+
+@media (min-width: 640px) {
+   .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Stat card ───────────────────────────────────────────────────────────── */
+
+.stat-card {
+   transition: transform 0.18s ease, box-shadow 0.18s ease;
+   border-top-width: 3px !important;
+}
+
+.stat-card:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.12) !important;
+}
+
+/* dark: lift uses a deeper glow so it doesn't wash out */
+.assignments-page--dark .stat-card:hover {
+   box-shadow: 0 6px 24px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* ── Date filter bar ─────────────────────────────────────────────────────── */
+
+.date-filter-bar {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   animation: fadeUp 0.35s 0.1s ease both;
+}
+
+@media (min-width: 640px) {
+   .date-filter-bar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+   }
+}
+
+/* Date navigator — pill-shaped grouped control */
+
+.date-nav-group {
+   display: flex;
+   align-items: center;
+   gap: 0;
+   /* background + borderColor injected inline from tk tokens */
+   border-width: 1px;
+   border-style: solid;
+   border-radius: 8px;
+   padding: 3px;
+   width: fit-content;
+}
+
+.date-nav-group .nav-arrow {
+   border: none !important;
+   background: transparent !important;
+   box-shadow: none !important;
+   padding: 0 10px;
+   height: 32px;
+   border-radius: 6px !important;
+   transition: background 0.15s, color 0.15s;
+}
+
+.date-nav-group .nav-arrow:hover {
+   background: rgba(99, 102, 241, 0.12) !important;
+   color: #6366f1 !important;
+}
+
+.date-nav-group .today-btn {
+   border: none !important;
+   background: transparent !important;
+   box-shadow: none !important;
+   height: 32px;
+   font-size: 13px;
+   font-weight: 500;
+   border-radius: 6px !important;
+   transition: background 0.15s, color 0.15s;
+   padding: 0 12px;
+}
+
+.date-nav-group .today-btn:hover {
+   background: rgba(99, 102, 241, 0.10) !important;
+   color: #6366f1 !important;
+}
+
+/* active state colours injected inline from tk — CSS class is just fallback */
+.date-nav-group .today-btn--active {
+   box-shadow: 0 1px 4px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Inline date picker */
+.date-nav-group .date-picker-inline {
+   border: none !important;
+   background: transparent !important;
+   box-shadow: none !important;
+   width: 120px;
+   height: 32px;
+}
+
+.date-nav-group .date-picker-inline .ant-picker-input input {
+   font-size: 13px;
+   font-weight: 500;
+   cursor: pointer;
+   text-align: center;
+}
+
+.date-nav-group .date-picker-inline:hover {
+   background: rgba(99, 102, 241, 0.08) !important;
+   border-radius: 6px;
+}
+
+.date-nav-group .today-btn + .date-picker-inline {
+   border-left: 1px solid rgba(0,0,0,0.08) !important;
+   border-radius: 0 !important;
+   padding-left: 8px;
+}
+
+.assignments-page--dark .date-nav-group .today-btn + .date-picker-inline {
+   border-left-color: rgba(255,255,255,0.08) !important;
+}
+
+/* ── Status segmented ────────────────────────────────────────────────────── */
+
+.status-segmented .ant-segmented-item-label { font-size: 12px; }
+.status-segmented .ant-segmented-item-selected { color: #4338ca; }
+.assignments-page--dark .status-segmented .ant-segmented-item-selected { color: #a5b4fc; }
+
+/* ── Content card ────────────────────────────────────────────────────────── */
+
+.content-card { animation-delay: 0.15s; overflow: hidden; }
+
+/* ── Table rows ──────────────────────────────────────────────────────────── */
+
+.assignment-row { transition: background-color 0.12s ease; }
+
+/* light */
+.assignment-row:hover td { background: #f8fafc !important; }
+
+/* dark */
+.assignments-page--dark .assignment-row:hover td {
+   background: rgba(99, 102, 241, 0.06) !important;
+}
+
+/* ── Mobile assignment card ──────────────────────────────────────────────── */
+
+.assignment-card {
+   transition: transform 0.15s ease, box-shadow 0.15s ease;
+   border-left-width: 3px !important;
+}
+
+.assignment-card:active { transform: scale(0.99); }
+
+@media (min-width: 768px) {
+   .assignment-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.10) !important;
+   }
+   .assignments-page--dark .assignment-card:hover {
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.22) !important;
+   }
+}
