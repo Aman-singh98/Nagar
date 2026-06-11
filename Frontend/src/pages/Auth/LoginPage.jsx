@@ -15,8 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { HiOutlineChip, HiEye, HiEyeOff, HiOutlineLockClosed, HiOutlineMail } from 'react-icons/hi';
+import { HiEye, HiEyeOff, HiOutlineLockClosed, HiOutlineMail } from 'react-icons/hi';
 import useAuthStore from '../../auth/authStore.js';
+import logo from '../../assets/icon-1024.png';
 
 // ─── Validation schema ────────────────────────────────────────────────────────
 
@@ -114,11 +115,20 @@ export default function LoginPage() {
                0%, 100% { transform: translateY(0px) scale(1);    }
                50%       { transform: translateY(-20px) scale(1.05); }
             }
+            @keyframes spin {
+               to { transform: rotate(360deg); }
+            }
+            @keyframes logoPulse {
+               0%, 100% { box-shadow: 0 8px 32px -4px rgba(99,102,241,0.45); }
+               50%       { box-shadow: 0 8px 40px -4px rgba(99,102,241,0.75); }
+            }
+            .login-brand   { animation: fadeUp 0.5s ease both; }
             .login-card    { animation: fadeUp 0.5s ease 0.1s both; }
             .login-field-1 { animation: fadeUp 0.4s ease 0.25s both; }
             .login-field-2 { animation: fadeUp 0.4s ease 0.35s both; }
             .login-btn     { animation: fadeUp 0.4s ease 0.45s both; }
             .login-demo    { animation: fadeUp 0.4s ease 0.55s both; }
+            .login-footer  { animation: fadeUp 0.4s ease 0.6s both; }
          `}</style>
 
          <div style={{
@@ -133,6 +143,7 @@ export default function LoginPage() {
             position: 'relative',
             overflow: 'hidden',
          }}>
+
             {/* Decorative background orbs */}
             <div style={{
                position: 'absolute', width: 400, height: 400, borderRadius: '50%',
@@ -149,31 +160,47 @@ export default function LoginPage() {
 
             <div style={{ width: '100%', maxWidth: 420, position: 'relative', zIndex: 1 }}>
 
-               {/* Brand mark */}
-               <div style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
+               {/* ── Brand mark ──────────────────────────────────────────────── */}
+               <div className="login-brand" style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
                   marginBottom: 32, justifyContent: 'center',
-                  animation: 'fadeUp 0.5s ease both',
                }}>
+                  {/* Logo image */}
                   <div style={{
-                     width: 46, height: 46, borderRadius: 14,
+                     width: 52, height: 52, borderRadius: 16,
+                     overflow: 'hidden', flexShrink: 0,
+                     animation: 'logoPulse 3s ease-in-out infinite',
                      background: 'var(--accent)',
-                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                     color: '#fff', fontSize: 24,
-                     boxShadow: '0 8px 24px -4px rgba(99,102,241,0.5)',
                   }}>
-                     <HiOutlineChip />
+                     <img
+                        src={logo}
+                        alt="CoCoTrack logo"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                     />
                   </div>
-                  <span style={{
-                     fontFamily: 'var(--font-display)',
-                     fontWeight: 800, fontSize: 24,
-                     color: 'var(--text)',
-                  }}>
-                     Nagar Admin
-                  </span>
+
+                  {/* App name */}
+                  <div>
+                     <div style={{
+                        fontFamily: 'var(--font-display)',
+                        fontWeight: 800, fontSize: 26,
+                        color: 'var(--text)', letterSpacing: '-0.5px',
+                        lineHeight: 1.1,
+                     }}>
+                        CoCoTrack
+                     </div>
+                     <div style={{
+                        fontSize: 11, fontWeight: 500,
+                        color: 'var(--accent)',
+                        letterSpacing: '0.04em',
+                        marginTop: 2,
+                     }}>
+                        Field Management System
+                     </div>
+                  </div>
                </div>
 
-               {/* Card */}
+               {/* ── Card ────────────────────────────────────────────────────── */}
                <div className="login-card" style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border-2)',
@@ -222,7 +249,6 @@ export default function LoginPage() {
                               hasRightIcon
                               error={errors.password?.message}
                            />
-                           {/* Toggle visibility */}
                            <button
                               type="button"
                               onClick={() => setShowPassword((v) => !v)}
@@ -289,7 +315,7 @@ export default function LoginPage() {
                      </div>
                   </form>
 
-                  {/* Demo credentials hint */}
+                  {/* Demo credentials */}
                   <div className="login-demo" style={{
                      marginTop: 24, padding: '12px 14px',
                      borderRadius: 'var(--radius)',
@@ -308,18 +334,16 @@ export default function LoginPage() {
                      </p>
                   </div>
                </div>
+
                {/* Footer */}
-               <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--text-3)', marginTop: 24, animation: 'fadeUp 0.4s ease 0.6s both' }}>
-                  Nagar Field Operations Platform · v1.0
+               <p className="login-footer" style={{
+                  textAlign: 'center', fontSize: 12,
+                  color: 'var(--text-3)', marginTop: 24,
+               }}>
+                  CoCoTrack Field Operations Platform · v1.0
                </p>
             </div>
          </div>
-
-         <style>{`
-            @keyframes spin {
-               to { transform: rotate(360deg); }
-            }
-         `}</style>
       </>
    );
 }

@@ -21,26 +21,26 @@ import {
    HiOutlineMap,
    HiOutlineClipboardList,
    HiOutlineLogout,
-   HiOutlineChip,
    HiOutlineLocationMarker,
    HiOutlineClock,
    HiOutlineChartBar,
-   HiOutlineUserGroup
+   HiOutlineUserGroup,
 } from 'react-icons/hi';
 import useAuthStore from '../../auth/authStore.js';
 import { useTheme } from '../../context/ThemeContext.jsx';
+import logo from '../../assets/icon-1024.png';
 
 // ─── Navigation config ────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
-   { to: '/', icon: HiOutlineViewGrid, label: 'Dashboard' },
-   { to: '/employees', icon: HiOutlineUsers, label: 'Employees' },
-   { to: '/routes', icon: HiOutlineMap, label: 'Routes' },
-   { to: '/assignments', icon: HiOutlineClipboardList, label: 'Assignments' },
-   { to: '/map', icon: HiOutlineLocationMarker, label: 'Live Map', badge: 'LIVE' },
-   { to: '/history', icon: HiOutlineClock, label: 'History' },
-   { to: '/reports', icon: HiOutlineChartBar, label: 'Reports' },
-   { to: '/reports/team', icon: HiOutlineUserGroup, label: 'Team Report' },
+   { to: '/',             icon: HiOutlineViewGrid,    label: 'Dashboard'   },
+   { to: '/employees',    icon: HiOutlineUsers,       label: 'Employees'   },
+   { to: '/routes',       icon: HiOutlineMap,         label: 'Routes'      },
+   { to: '/assignments',  icon: HiOutlineClipboardList, label: 'Assignments' },
+   { to: '/map',          icon: HiOutlineLocationMarker, label: 'Live Map', badge: 'LIVE' },
+   { to: '/history',      icon: HiOutlineClock,       label: 'History'     },
+   { to: '/reports',      icon: HiOutlineChartBar,    label: 'Reports'     },
+   { to: '/reports/team', icon: HiOutlineUserGroup,   label: 'Team Report' },
 ];
 
 // ─── Theme Toggle Button ──────────────────────────────────────────────────────
@@ -93,9 +93,7 @@ function ThemeToggle() {
                transform: translateY(-1px);
                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             }
-            .theme-toggle-btn:active {
-               transform: translateY(0px) scale(0.98);
-            }
+            .theme-toggle-btn:active { transform: translateY(0px) scale(0.98); }
             .theme-toggle-btn--dark {
                background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
                color: #c7d2fe;
@@ -112,16 +110,10 @@ function ThemeToggle() {
             .theme-toggle-btn--light::before {
                background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
             }
-
             .theme-icon-wrap {
-               width: 28px;
-               height: 28px;
-               border-radius: 50%;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               flex-shrink: 0;
-               position: relative;
+               width: 28px; height: 28px; border-radius: 50%;
+               display: flex; align-items: center; justify-content: center;
+               flex-shrink: 0; position: relative;
                animation: spin-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             }
             .theme-icon-wrap--dark {
@@ -132,78 +124,33 @@ function ThemeToggle() {
                background: rgba(251, 191, 36, 0.3);
                box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.4);
             }
-
-            /* Sun rays */
-            .sun-rays {
-               position: absolute;
-               inset: -4px;
-               animation: rays-pulse 2.5s ease-in-out infinite;
-            }
+            .sun-rays { position: absolute; inset: -4px; animation: rays-pulse 2.5s ease-in-out infinite; }
             .sun-ray {
-               position: absolute;
-               width: 2px;
-               height: 5px;
-               background: #f59e0b;
-               border-radius: 1px;
-               left: 50%;
-               transform-origin: 50% 18px;
-               top: 0;
-               margin-left: -1px;
+               position: absolute; width: 2px; height: 5px;
+               background: #f59e0b; border-radius: 1px;
+               left: 50%; transform-origin: 50% 18px;
+               top: 0; margin-left: -1px;
             }
-
-            /* Stars */
             .star {
-               position: absolute;
-               background: #c7d2fe;
-               border-radius: 50%;
+               position: absolute; background: #c7d2fe; border-radius: 50%;
                animation: stars-twinkle 1.8s ease-in-out infinite;
             }
             .star:nth-child(2) { animation-delay: 0.4s; }
             .star:nth-child(3) { animation-delay: 0.8s; }
-
-            .theme-toggle-label {
-               flex: 1;
-               text-align: left;
-               position: relative;
-               z-index: 1;
-            }
-            .theme-toggle-hint {
-               font-size: 9px;
-               font-weight: 400;
-               opacity: 0.7;
-               display: block;
-               line-height: 1;
-               margin-top: 1px;
-            }
-
+            .theme-toggle-label { flex: 1; text-align: left; position: relative; z-index: 1; }
+            .theme-toggle-hint { font-size: 9px; font-weight: 400; opacity: 0.7; display: block; line-height: 1; margin-top: 1px; }
             .theme-toggle-track {
-               width: 32px;
-               height: 18px;
-               border-radius: 9px;
-               position: relative;
-               flex-shrink: 0;
-               transition: background 0.3s;
+               width: 32px; height: 18px; border-radius: 9px;
+               position: relative; flex-shrink: 0; transition: background 0.3s;
             }
             .theme-toggle-track--dark  { background: rgba(99, 102, 241, 0.4); }
             .theme-toggle-track--light { background: rgba(251, 191, 36, 0.5); }
             .theme-toggle-thumb {
-               position: absolute;
-               top: 3px;
-               width: 12px;
-               height: 12px;
-               border-radius: 50%;
-               transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+               position: absolute; top: 3px; width: 12px; height: 12px;
+               border-radius: 50%; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             }
-            .theme-toggle-thumb--dark {
-               left: 3px;
-               background: #6366f1;
-               box-shadow: 0 0 6px rgba(99, 102, 241, 0.6);
-            }
-            .theme-toggle-thumb--light {
-               left: 17px;
-               background: #f59e0b;
-               box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
-            }
+            .theme-toggle-thumb--dark  { left: 3px;  background: #6366f1; box-shadow: 0 0 6px rgba(99,102,241,0.6); }
+            .theme-toggle-thumb--light { left: 17px; background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.6); }
          `}</style>
 
          <button
@@ -211,44 +158,35 @@ function ThemeToggle() {
             className={`theme-toggle-btn theme-toggle-btn--${isDark ? 'dark' : 'light'}`}
             title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
          >
-            {/* Animated icon */}
             <div className={`theme-icon-wrap theme-icon-wrap--${isDark ? 'dark' : 'light'}`} key={isDark ? 'moon' : 'sun'}>
                {isDark ? (
                   <>
-                     {/* Stars around the moon icon */}
                      <div className="star" style={{ width: 3, height: 3, top: 2, right: 3 }} />
                      <div className="star" style={{ width: 2, height: 2, bottom: 3, right: 4, animationDelay: '0.4s' }} />
                      <div className="star" style={{ width: 2, height: 2, top: 6, left: 2, animationDelay: '0.8s' }} />
-                     {/* Moon SVG */}
-                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#818cf8" stroke="#818cf8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                      </svg>
                   </>
                ) : (
                   <>
-                     {/* Sun rays */}
                      <div className="sun-rays">
                         {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
                            <div key={deg} className="sun-ray" style={{ transform: `rotate(${deg}deg) translateX(-50%)` }} />
                         ))}
                      </div>
-                     {/* Sun SVG */}
-                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="12" r="5" fill="#f59e0b" stroke="#f59e0b" strokeWidth="1.5" />
                      </svg>
                   </>
                )}
             </div>
 
-            {/* Label */}
-            <span className="theme-toggle-label" style={{ position: 'relative', zIndex: 1 }}>
+            <span className="theme-toggle-label">
                {isDark ? 'Dark mode' : 'Light mode'}
-               <span className="theme-toggle-hint">
-                  {isDark ? 'Click for light' : 'Click for dark'}
-               </span>
+               <span className="theme-toggle-hint">{isDark ? 'Click for light' : 'Click for dark'}</span>
             </span>
 
-            {/* Toggle track */}
             <div className={`theme-toggle-track theme-toggle-track--${isDark ? 'dark' : 'light'}`}>
                <div className={`theme-toggle-thumb theme-toggle-thumb--${isDark ? 'dark' : 'light'}`} />
             </div>
@@ -257,7 +195,7 @@ function ThemeToggle() {
    );
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// ─── Nav Item ─────────────────────────────────────────────────────────────────
 
 function NavItem({ to, icon: Icon, label, badge }) {
    return (
@@ -280,17 +218,15 @@ function NavItem({ to, icon: Icon, label, badge }) {
             position: 'relative',
          })}
          onMouseEnter={(e) => {
-            const link = e.currentTarget;
-            if (!link.dataset.active) {
-               link.style.color = 'var(--text)';
-               link.style.background = 'var(--surface)';
+            if (!e.currentTarget.dataset.active) {
+               e.currentTarget.style.color = 'var(--text)';
+               e.currentTarget.style.background = 'var(--surface)';
             }
          }}
          onMouseLeave={(e) => {
-            const link = e.currentTarget;
-            if (!link.dataset.active) {
-               link.style.color = '';
-               link.style.background = '';
+            if (!e.currentTarget.dataset.active) {
+               e.currentTarget.style.color = '';
+               e.currentTarget.style.background = '';
             }
          }}
       >
@@ -335,29 +271,47 @@ export default function Sidebar() {
          top: 0,
       }}>
 
-         {/* ── Logo ── */}
-         <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid var(--border)' }}>
+         {/* ── Brand ─────────────────────────────────────────────────────── */}
+         <div style={{ padding: '20px 16px 18px', borderBottom: '1px solid var(--border)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+               {/* Logo image */}
                <div style={{
-                  width: 34, height: 34, borderRadius: 8,
+                  width: 36, height: 36, borderRadius: 10,
+                  overflow: 'hidden', flexShrink: 0,
+                  boxShadow: '0 4px 12px -2px rgba(99,102,241,0.4)',
                   background: 'var(--accent)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#fff', fontSize: 16,
-                  boxShadow: 'var(--shadow-accent)',
                }}>
-                  <HiOutlineChip />
+                  <img
+                     src={logo}
+                     alt="CoCoTrack logo"
+                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
                </div>
-               <span style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 700, fontSize: 17,
-                  color: 'var(--text)',
-               }}>
-                  Nagar
-               </span>
+
+               {/* App name + tagline */}
+               <div style={{ minWidth: 0 }}>
+                  <div style={{
+                     fontFamily: 'var(--font-display)',
+                     fontWeight: 800, fontSize: 16,
+                     color: 'var(--text)', letterSpacing: '-0.3px',
+                     lineHeight: 1.1,
+                  }}>
+                     CoCoTrack
+                  </div>
+                  <div style={{
+                     fontSize: 9.5, fontWeight: 500,
+                     color: 'var(--accent)',
+                     letterSpacing: '0.03em',
+                     marginTop: 2,
+                     whiteSpace: 'nowrap',
+                  }}>
+                     Field Management
+                  </div>
+               </div>
             </div>
          </div>
 
-         {/* ── Navigation ── */}
+         {/* ── Navigation ────────────────────────────────────────────────── */}
          <nav style={{
             flex: 1,
             padding: '12px 10px',
@@ -371,22 +325,27 @@ export default function Sidebar() {
             ))}
          </nav>
 
-         {/* ── User footer ── */}
+         {/* ── User footer ───────────────────────────────────────────────── */}
          <div style={{ padding: '12px 10px', borderTop: '1px solid var(--border)' }}>
             <div style={{ padding: '8px 12px', marginBottom: 4 }}>
-               <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+               <p style={{
+                  fontSize: 13, fontWeight: 600, color: 'var(--text)',
+                  overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
+                  margin: 0,
+               }}>
                   {user?.name}
                </p>
-               <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2, textTransform: 'capitalize' }}>
+               <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2, textTransform: 'capitalize', margin: '2px 0 0' }}>
                   {user?.role}
                </p>
             </div>
 
-            {/* ── Theme Toggle ── */}
+            {/* Theme toggle */}
             <div style={{ marginBottom: 6 }}>
                <ThemeToggle />
             </div>
 
+            {/* Sign out */}
             <button
                onClick={handleLogout}
                style={{
